@@ -22,6 +22,7 @@ Jeweler::Tasks.new do |gem|
   gem.files = Dir.glob('lib/**/*.rb')
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
+  gem.add_runtime_dependency 'selenium-webdriver', '~> 0.1.3'
   gem.add_runtime_dependency 'au3', '~> 0.1.2'
   #  gem.add_development_dependency 'rspec', '> 1.2.3'
 end
