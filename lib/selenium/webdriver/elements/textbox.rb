@@ -28,6 +28,12 @@ module Selenium
           @element.send_keys *args
         end
 
+        def populate data
+          if data != nil
+            type data
+          end
+        end
+
       end
 
     end

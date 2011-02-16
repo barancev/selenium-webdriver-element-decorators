@@ -23,9 +23,15 @@ module Selenium
           case element.tag_name
             when 'form' then Form.new element, browser
             when 'input' then
-              case element.attribute('type')
+              type = element['type']
+              case element['type']
+                when 'text', 'password' then Textbox.new element, browser
+                when 'submit', 'reset', 'button', 'image' then Button.new element, browser
+                when 'checkbox' then Checkbox.new element, browser
                 when 'file' then FileChooser.new element, browser
-                else Textbox.new element, browser
+                # TODO: implement radio buttons
+                #when 'radio' then Element.new element, browser
+                else Element.new element, browser
               end
             when 'textarea' then Textbox.new element, browser
             when 'select' then Select.new element, browser
@@ -43,27 +49,11 @@ module Selenium
         end
 
         def find_elements *args
-          @element.find_elements(*args).collect { |el| Element.new el, @browser }
+          @element.find_elements(*args).collect { |el| create_element el, @browser }
         end
 
         def element_present? *args
           find_element(*args) != nil
-        end
-
-        def find_select *args
-          begin
-            Select.new(@element.find_element *args)
-          rescue Selenium::WebDriver::Error::NoSuchElementError
-            nil
-          end
-        end
-
-        def find_file_chooser *args
-          begin
-            FileChooser.new(@element.find_element *args)
-          rescue Selenium::WebDriver::Error::NoSuchElementError
-            nil
-          end
         end
 
       end
@@ -76,5 +66,6 @@ module Selenium
       end
 
     end
+
   end
 end

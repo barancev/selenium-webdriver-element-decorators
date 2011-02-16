@@ -13,8 +13,18 @@ module Selenium
           end
         end
 
-        def populate
+        def populate data
+          inputs = []
+          find_elements(:tag_name => 'input').each do |input|
+            inputs << input if input.is_a? Textbox or input.is_a? Checkbox or input.is_a? FileChooser
+          end
+          inputs += find_elements :tag_name => 'textarea'
+          inputs += find_elements :tag_name => 'select'
 
+          inputs.each do |input|
+            input.populate data[input['name']]
+          end
+          self
         end
 
       end

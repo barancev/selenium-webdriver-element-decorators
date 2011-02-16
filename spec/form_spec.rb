@@ -2,40 +2,25 @@ require File.join(File.dirname(__FILE__), 'spec_helper.rb')
 
 include Selenium::WebDriver::Elements
 
-describe "Browser" do
+describe "Form" do
+
+  include Aux
 
   before(:each) do
-    @browser.navigate.to 'http://www.google.com/ncr'
+    @browser.navigate.to 'http://www.htmlcodetutorial.com/forms/index_famsupp_1.html'
   end
 
-  it "should load pages" do
-    @browser.title.should eq "Google"
+  def form
+    @browser.find_elements(:tag_name => 'form')[1]
   end
 
-  it "should find single element" do
-    logo = @browser.find_element :id => "hplogo"
-    logo.attribute("alt").should eq "Google"
+  it "should recognize forms" do
+    form.should be_kind_of Form
   end
 
-  it "should find several elements" do
-    links = @browser.find_elements :class => "gb1"
-    links.length.should eq 7
-  end
-
-  it "should type in textbox" do
-    textbox = @browser.find_element :name => "q"
-    textbox.should be_kind_of Textbox
-    textbox.type "Ruby", :enter
-    textbox.value.should eq "Ruby"
-  end
-
-  it "should select from list" do
-    textbox = @browser.find_element :name => "q"
-    textbox.type "Ruby", :enter
-
-    @browser.find_element(:link => "Shopping").click
-    list = @browser.find_element :id => "ps_sort"
-    list.select_by_text "Price: high to low"
+  it "should submit form" do
+    form.submit
+    expect_result( {'color' => ''} )
   end
 
 end

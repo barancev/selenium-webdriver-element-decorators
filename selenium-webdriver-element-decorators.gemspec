@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexei Barantsev"]
-  s.date = %q{2011-02-16}
+  s.date = %q{2011-02-17}
   s.description = %q{Selenium 2.0 (WebDriver) decorators for web-elements that provide specific methods fot each web-element}
   s.email = %q{barancev@gmail.com}
   s.extra_rdoc_files = [
@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.files = [
     "lib/selenium/webdriver/elements.rb",
     "lib/selenium/webdriver/elements/browser.rb",
+    "lib/selenium/webdriver/elements/button.rb",
+    "lib/selenium/webdriver/elements/checkbox.rb",
     "lib/selenium/webdriver/elements/element.rb",
     "lib/selenium/webdriver/elements/file_chooser.rb",
     "lib/selenium/webdriver/elements/form.rb",
@@ -32,7 +34,10 @@ Gem::Specification.new do |s|
   s.summary = %q{Selenium 2.0 (WebDriver) decorators for web-elements}
   s.test_files = [
     "spec/browser_spec.rb",
-    "spec/spec_helper.rb"
+    "spec/form_populate_spec.rb",
+    "spec/form_spec.rb",
+    "spec/spec_helper.rb",
+    "spec/textbox_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -46,6 +51,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<selenium-webdriver>, ["~> 0.1.3"])
       s.add_development_dependency(%q<au3>, ["~> 0.1.2"])
+      s.add_runtime_dependency(%q<selenium-webdriver>, ["~> 0.1.3"])
       s.add_runtime_dependency(%q<au3>, ["~> 0.1.2"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.5.0"])
@@ -54,6 +60,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<selenium-webdriver>, ["~> 0.1.3"])
       s.add_dependency(%q<au3>, ["~> 0.1.2"])
+      s.add_dependency(%q<selenium-webdriver>, ["~> 0.1.3"])
       s.add_dependency(%q<au3>, ["~> 0.1.2"])
     end
   else
@@ -63,6 +70,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<selenium-webdriver>, ["~> 0.1.3"])
     s.add_dependency(%q<au3>, ["~> 0.1.2"])
+    s.add_dependency(%q<selenium-webdriver>, ["~> 0.1.3"])
     s.add_dependency(%q<au3>, ["~> 0.1.2"])
   end
 end

@@ -19,7 +19,7 @@ describe "Browser" do
 
   it "should find several elements" do
     links = @browser.find_elements :class => "gb1"
-    links.length.should eq 7
+    links.length.should have_at_least(4).items
   end
 
   it "should type in textbox" do

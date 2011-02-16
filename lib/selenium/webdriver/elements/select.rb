@@ -13,26 +13,60 @@ module Selenium
           end
         end
 
-        def select_by_value value
-          options = @element.find_elements :tag_name => 'option'
-          options.each { |opt|
-            if (opt.value == value)
-                opt.select()
-                break
+        def select_by_value selection
+          if selection.is_a?(Array)
+            unless @element['multiple']
+              raise "Attempt to select multiple values in a listbox with single selection mode"
             end
-          }
+            options = @element.find_elements :tag_name => 'option'
+            options.each do |opt|
+              if (selection.include? opt.value)
+                opt.select unless opt.selected?
+              else
+                opt.toggle if opt.selected?
+              end
+            end
+          else
+            options = @element.find_elements :tag_name => 'option'
+            options.each do |opt|
+              if (opt.value == selection)
+                  opt.select
+                  break
+              end
+            end
+          end
         end
 
-        def select_by_text text
-          options = @element.find_elements :tag_name => 'option'
-          options.each { |opt|
-            if (opt.text == text)
-                opt.select()
-                break
+        def select_by_text selection
+          if selection.is_a?(Array)
+            unless @element['multiple']
+              raise "Attempt to select multiple values in a listbox with single selection mode"
             end
-          }
+            options = @element.find_elements :tag_name => 'option'
+            options.each do |opt|
+              if (selection.include? opt.text)
+                opt.select unless opt.selected?
+              else
+                opt.toggle if opt.selected?
+              end
+            end
+          else
+            options = @element.find_elements :tag_name => 'option'
+            options.each do |opt|
+              if (opt.text == selection)
+                  opt.select
+                  break
+              end
+            end
+          end
         end
 
+      end
+
+      def populate data
+        if data != nil
+          select_by_value data
+        end
       end
 
     end

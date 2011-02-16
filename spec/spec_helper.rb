@@ -19,3 +19,35 @@ RSpec.configure do |c|
   end
 
 end
+
+module Aux
+
+  def expect_result params
+    params.keys.each do |key|
+      params[key] = 'on' if params[key] == true
+      params.delete(key) if params[key] == false
+    end
+    params.should eq results
+  end
+
+  def results
+    res = {}
+    table = @browser.find_elements(:tag_name => 'table')[1]
+    rows = table.find_elements :tag_name => 'tr'
+    name = nil
+    rows.each do |r|
+      name_cell = r.find_element(:tag_name => 'th')
+      name = name_cell.text unless name_cell == nil
+      if res[name] == nil
+        res[name] = r.find_element(:tag_name => 'td').text
+      else
+        unless res[name].is_a? Array
+          res[name] = [ res[name] ]
+        end
+        res[name] << r.find_element(:tag_name => 'td').text
+      end
+    end
+    res
+  end
+
+end

@@ -22,6 +22,12 @@ module Selenium
           end
         end
 
+        def populate data
+          if data != nil
+            choose_file data
+          end
+        end
+
         def autoit
           autoit = Thread.new do
             AutoItX3::Window.wait "Open"
