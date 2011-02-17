@@ -59,9 +59,12 @@ module Selenium
       end
 
       def send_keys *args
+        # ----- workaround -----
+        # see http://code.google.com/p/selenium/issues/detail?id=440
         if @browser.browser == :chrome
           @element.click
         end
+        # ----- workaround -----
         @element.send_keys *args
       end
 
