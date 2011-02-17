@@ -6,13 +6,11 @@ module Selenium
 
       class Browser < Element
 
-        def initialize element
-          if element.is_a?(Selenium::WebDriver::Driver) then
-            @element = element
-          elsif element.is_a?(Symbol) then
-            @element = Selenium::WebDriver.for element
+        def initialize *args
+          if args.length == 1 and args[1].is_a? Selenium::WebDriver::Driver
+            @element = args[1]
           else
-            raise TypeError.new "Can't create Browser decorator for #{element.inspect}"
+            @element = Selenium::WebDriver.for *args
           end
           @browser = @element
         end
