@@ -1,3 +1,4 @@
+require 'selenium/webdriver'
 require 'selenium/webdriver/elements/element'
 require 'selenium/webdriver/elements/browser'
 require 'selenium/webdriver/elements/form'

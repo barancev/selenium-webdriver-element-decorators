@@ -3,7 +3,6 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'rubygems'
 require 'rspec'
-require 'selenium/webdriver'
 require 'selenium/webdriver/elements'
 
 include Selenium::WebDriver::Elements
