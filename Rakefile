@@ -16,7 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/barancev/selenium-webdriver-element-decorators"
   gem.license = "MIT"
   gem.summary = %Q{Selenium 2.0 (WebDriver) decorators for web-elements}
-  gem.description = %Q{Selenium 2.0 (WebDriver) decorators for web-elements that provide specific methods fot each web-element}
+  gem.description = %Q{Selenium 2.0 (WebDriver) decorators for web-elements that provide specific methods for each web-element}
   gem.email = "barancev@gmail.com"
   gem.authors = ["Alexei Barantsev"]
   gem.files = Dir.glob('lib/**/*.rb')
