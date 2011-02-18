@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{selenium-webdriver-element-decorators}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexei Barantsev"]
-  s.date = %q{2011-02-17}
+  s.date = %q{2011-02-18}
   s.description = %q{Selenium 2.0 (WebDriver) decorators for web-elements that provide specific methods fot each web-element}
   s.email = %q{barancev@gmail.com}
   s.extra_rdoc_files = [
