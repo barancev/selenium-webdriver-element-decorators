@@ -1,6 +1,29 @@
-= selenium-webdriver-element-decorators
+= Selenium 2.0 (WebDriver) Element Decorators
 
-Description goes here.
+This package implements a set of decorator classes for WebElement's of Selenium 2.0 (WebDriver). They add specific behavoiur to various elements of web interface that allow to write more readable automation scripts. Decorators provide all the same methods as original WebElement, but adds several new methods to deal with forms, selects, checkboxes etc.
+
+== Sample
+
+    require ''
+
+    browser = Browser.new :firefox
+    browser.navigate.to 'http://www.htmlcodetutorial.com/forms/_INPUT_TYPE_PASSWORD.html'
+
+    form = browser.find_element(:id => 'content').find_element(:tag_name => 'form')
+    form.populate 'realname' => 'John Smith', 'mypassword' => 'qwerty'
+    form.submit
+
+    browser.navigate.to 'http://www.htmlcodetutorial.com/forms/_SELECT_MULTIPLE.html'
+    form = browser.find_element(:id => 'content').find_element(:tag_name => 'form')
+    select = form.find_element :name => 'toppings'
+    select.select_by_value ['greenpeppers', 'tomatoes']
+    form.submit
+
+== Why Decorators?
+
+Yes, it was possible to inject new methods right inside WebElement class. But decorator pattern looks more suitable because it allows to distinguish web elements of different kind. One may use is_a? method to check their type, and only specific methods are added to each decorator class. What would 'populate' method mean for a button, or 'append' method for an element other than text input field (or password, or text area)?
+
+Decorators reimplement 'find_element' and 'find_elements' methods. They make an attempt to recognize type of each found element and automatically decorate it according to its type.
 
 == Contributing to selenium-webdriver-element-decorators
  
