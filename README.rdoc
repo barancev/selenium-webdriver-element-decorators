@@ -4,7 +4,7 @@ This package implements a set of decorator classes for WebElement's of Selenium 
 
 == Sample
 
-    require ''
+    require 'selenium/webdriver/elements'
 
     browser = Browser.new :firefox
     browser.navigate.to 'http://www.htmlcodetutorial.com/forms/_INPUT_TYPE_PASSWORD.html'
